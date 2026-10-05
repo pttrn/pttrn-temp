@@ -1,0 +1,36 @@
+[data-pttrn='button-dock'] {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--spacing-sizing-02) var(--spacing-sizing-04);
+    gap: var(--spacing-sizing-04);
+
+    &[data-arrangement='fill'] {
+        display: flex;
+
+        [data-pttrn='button'] {
+            flex: 1;
+        }
+    }
+
+    &[data-arrangement='spread'] {
+        justify-content: space-between;
+
+        [data-pttrn='button'] {
+            min-width: var(--spacing-sizing-12);
+            justify-self: stretch;
+        }
+    }
+
+    &[data-mode='fixed'] {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: var(--surface-neutral-t1-base);
+        box-shadow: var(--drop-shadow-north);
+        z-index: var(--z-index-button-dock);
+    }
+}

@@ -1,0 +1,54 @@
+[data-pttrn='input-phone'] {
+    position: relative;
+    width: 100%;
+}
+
+[data-pttrn-owner='input-phone'][data-pttrn='input'] {
+    padding-left: 0;
+
+    &:focus-within {
+        outline: none;
+    }
+
+    input:focus-visible {
+        outline: solid 2px var(--stroke-neutral-focus);
+        isolation: isolate;
+        border-radius: var(--radius-sm);
+    }
+
+    [data-pttrn='divider'] {
+        margin: 0 var(--spacing-sizing-02) 0 0;
+    }
+
+    [data-leading] {
+        position: relative;
+
+        [data-pttrn='button'] {
+            gap: var(--spacing-sizing-02);
+            padding: 0 var(--spacing-sizing-03);
+            min-height: 100%;
+            margin-right: var(--spacing-sizing-02);
+            position: relative;
+            z-index: 2;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: var(--spacing-sizing-01);
+                bottom: var(--spacing-sizing-01);
+                right: 0;
+                width: 1px;
+                background-color: var(--stroke-neutral-base);
+                pointer-events: none;
+            }
+        }
+    }
+
+    &[data-size='small'] {
+        [data-leading] {
+            [data-pttrn='button'] {
+                padding-left: var(--spacing-sizing-02);
+            }
+        }
+    }
+}

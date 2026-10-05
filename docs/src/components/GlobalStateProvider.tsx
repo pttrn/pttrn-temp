@@ -1,0 +1,102 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { StylesProviderDemo as StylesProvider } from '@ptrn/react/StylesProviderDemo';
+import { useUIContext } from '@ptrn/react/hooks/useUIContext';
+import { Brand } from '@ptrn/react/types/common';
+import { COLOR_THEMES, ColorTheme } from '@ptrn/react/utils/uiContext';
+import { BRANDS } from '@ptrn/styles/brands';
+import { PropsWithChildren, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import store from 'store';
+import { BUILD, VERSION } from 'src/meta';
+import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
+import { useStoreState } from 'src/utils/useStoreState';
+
+declare global {
+    interface Window {
+        gtag?: (...args: any[]) => void;
+    }
+}
+
+export function GlobalStateProvider({ children }: PropsWithChildren) {
+    const [globalState, setState] = useStoreState<GlobalState>(`pttrn-global-${VERSION}.${BUILD}`, globalStateDefault);
+
+    const { theme, setTheme } = useUIContext();
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (window.gtag) {
+            window.gtag('event', 'page_view', {
+                page_path: location.pathname + location.search,
+                page_title: document.title,
+            });
+        }
+    }, [location]);
+
+    useEffect(() => {
+        const searchParams = Object.fromEntries(new URLSearchParams(globalThis.location.search).entries());
+
+        let overrideTheme: ColorTheme | undefined;
+        let overrideBrand: Brand | undefined;
+
+        if (
+            searchParams.theme &&
+            COLOR_THEMES.includes(searchParams.theme as ColorTheme) &&
+            searchParams.theme !== theme
+        ) {
+            overrideTheme = searchParams.theme as ColorTheme;
+        }
+
+        if (
+            searchParams.brand &&
+            BRANDS.find((b) => b.slug === searchParams.brand) &&
+            searchParams.brand !== globalState.brand
+        ) {
+            overrideBrand = searchParams.brand as Brand;
+        }
+
+        if (overrideBrand)
+            setState((prev) => ({
+                ...prev,
+                brand: overrideBrand || prev.brand,
+            }));
+
+        if (overrideTheme) setTheme(overrideTheme);
+
+        if (globalState.theme) setTheme(globalState.theme);
+    }, []);
+
+    const { brand, showTouchTarget } = globalState;
+
+    useEffect(() => {
+        document.querySelectorAll('link[data-syntax-theme]').forEach((link) => link.setAttribute('disabled', 'true'));
+        document.querySelector(`link[data-syntax-theme="${theme}"]`)?.removeAttribute('disabled');
+
+        if (theme !== globalState.theme) setState((prev) => ({ ...prev, theme }));
+    }, [theme]);
+
+    return (
+        <>
+            <StylesProvider brand={brand} />
+            <globalStateContext.Provider
+                value={useMemo(
+                    () => ({
+                        brand,
+                        theme,
+                        showTouchTarget,
+                        setTheme,
+                        setBrand: (nextBrand: Brand) => setState((prev) => ({ ...prev, brand: nextBrand })),
+                        setShowTouchTarget: (show: boolean) => setState((prev) => ({ ...prev, showTouchTarget: show })),
+                        resetGlobalState: () => {
+                            store.clearAll();
+                            setState(globalStateDefault);
+                        },
+                    }),
+                    [brand, showTouchTarget, theme],
+                )}
+            >
+                {children}
+            </globalStateContext.Provider>
+        </>
+    );
+}

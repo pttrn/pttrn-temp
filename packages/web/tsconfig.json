@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "ES2022",
+        "target": "ES2022",
+        "lib": ["ES2022", "dom", "dom.iterable"],
+        "moduleResolution": "bundler",
+        "strict": true,
+        "noImplicitReturns": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "useDefineForClassFields": false,
+        "isolatedModules": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "types": ["node"]
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,63 @@
+{
+    "name": "@ptrn/web",
+    "version": "0.0.1",
+    "description": "pttrn Web Components: framework-free custom elements built with Lit.",
+    "license": "CC-BY-4.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "type": "module",
+    "sideEffects": true,
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pttrn/pttrn",
+        "directory": "packages/web"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        },
+        "./cdn": "./dist/cdn/ptrn-web.min.js",
+        "./Accordion": {
+            "types": "./dist/components/Accordion/index.d.ts",
+            "default": "./dist/components/Accordion/index.js"
+        }
+    },
+    "scripts": {
+        "build": "tsx build.ts",
+        "newc": "tsx .scripts/new-component.ts",
+        "lint": "eslint && tsc --noEmit && stylelint '**/*.scss'",
+        "lint:fix": "eslint --fix",
+        "test": "playwright test"
+    },
+    "dependencies": {
+        "lit": "^3.3.0"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "^4.10.1",
+        "@eslint/js": "^9.39.1",
+        "@playwright/test": "^1.50.1",
+        "@ptrn/icons": "*",
+        "@types/node": "^22.10.2",
+        "esbuild": "^0.28.0",
+        "eslint": "^9.39.1",
+        "eslint-config-prettier": "^10.1.8",
+        "globals": "^15.12.0",
+        "sass": "^1.89.2",
+        "stylelint": "^16.19.1",
+        "stylelint-config-standard-scss": "^14.0.0",
+        "tsx": "^4.19.4",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.49.0"
+    }
+}

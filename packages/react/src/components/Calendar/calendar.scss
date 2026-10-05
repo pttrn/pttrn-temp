@@ -1,0 +1,93 @@
+[data-pttrn='calendar'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font: var(--labels-base);
+    width: 360px;
+    color: var(--foreground-neutral-on-surface);
+    gap: var(--spacing-sizing-01);
+    background: var(--surface-neutral-t1-base);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sizing-02);
+
+    [data-header] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        border-bottom: 1px solid var(--stroke-neutral-low);
+
+        [data-title] {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            [data-pttrn='button'] {
+                font: inherit;
+
+                &[data-month],
+                &[data-year] {
+                    padding: 0;
+                    min-width: var(--spacing-sizing-12);
+                }
+            }
+        }
+
+        [data-pttrn='button'] {
+            border-radius: var(--radius-sm);
+        }
+    }
+
+    table {
+        display: flex;
+        flex-direction: column;
+
+        tr {
+            display: contents;
+        }
+
+        td,
+        th {
+            height: var(--spacing-sizing-12);
+            line-height: var(--spacing-sizing-12);
+            text-align: center;
+            border-radius: var(--radius-sm);
+            font-weight: inherit;
+        }
+
+        thead {
+            display: grid;
+            grid-template-columns: repeat(7, calc(100% / 7));
+            text-align: center;
+
+            th {
+                color: var(--foreground-neutral-on-surface-variant-01);
+            }
+        }
+
+        tbody {
+            display: grid;
+            grid-template-columns: repeat(7, calc(100% / 7));
+
+            [data-non-month-day] {
+                color: var(--foreground-neutral-on-surface-variant-02);
+            }
+
+            td {
+                &:hover,
+                &:focus-visible {
+                    cursor: pointer;
+                    outline: 2px solid var(--stroke-neutral-focus);
+                    outline-offset: -2px;
+                }
+
+                &[data-selected] {
+                    background: var(--surface-brand-primary);
+                    color: var(--foreground-brand-on-primary);
+                    outline-offset: 2px;
+                }
+            }
+        }
+    }
+}

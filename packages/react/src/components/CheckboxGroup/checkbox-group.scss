@@ -1,0 +1,12 @@
+[data-pttrn='checkbox-group'] {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 100%;
+
+    --list-item-height: 'auto';
+
+    [data-pttrn='list-item'] {
+        background: transparent;
+    }
+}

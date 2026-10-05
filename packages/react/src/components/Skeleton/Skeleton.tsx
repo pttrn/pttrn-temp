@@ -1,0 +1,84 @@
+import { ReactNode } from 'react';
+import { cssWithVars } from '-/utils/cwv';
+
+export type SkeletonVariant = 'circular' | 'photo' | 'profile' | 'rectangular' | 'thumbnail';
+
+export type SkeletonProps = {
+    /**
+     * The variant of the skeleton that best hints the content being loaded.
+     *
+     * @default rectangular
+     */
+    variant?: SkeletonVariant;
+    /**
+     * The width of the skeleton. This is ignored when variant is 'profile' or 'thumbnail'.
+     *
+     * @default 200
+     * @type number
+     */
+    width?: number | string;
+    /**
+     * The height of the skeleton. This is ignored when variant is 'profile' or 'thumbnail'.
+     *
+     * @default 100
+     * @type number
+     */
+    height?: number | string;
+    /**
+     * The content of the skeleton.
+     *
+     * When the value is undefined, null or false the skeleton will appear.
+     *
+     * If the value is provided, the skeleton will not appear and the content will be displayed instead.
+     */
+    children?: ReactNode | null;
+};
+
+/**
+ * A visual placeholder for an element while it is in a loading state.
+ *
+ * The data for your components might not be immediately available. You can improve the perceived responsiveness of the
+ * page by using skeletons. It feels like things are happening immediately, then the information is incrementally
+ * displayed on the screen.
+ *
+ * This component can be used to create skeletons for various types of content, such as images or profiles.
+ *
+ * You can use this component directly or use the specific use case components: SkeletonPhoto, SkeletonProfile,
+ * SkeletonRectangular, SkeletonText, SkeletonThumbnail, SkeletonCircular.
+ *
+ * @example
+ *     import { Skeleton } from '@ptrn/react/skeleton';
+ *
+ *     <Skeleton variant="photo" width={210} height={118}>
+ *         <img
+ *             style={{
+ *                 width: 210,
+ *                 height: 118,
+ *             }}
+ *             alt={'A cool photo'}
+ *             src={'https://example.com/cool-photo.jpg'}
+ *         />
+ *     </Skeleton>;
+ *
+ * @exampleDescription This example shows a skeleton loading state for an image but can be used for any element.
+ *
+ * @name Skeleton
+ * @phase Stable
+ */
+export function Skeleton({ width = 100, height = 100, variant = 'rectangular', children = null }: SkeletonProps) {
+    return children !== null && children !== undefined && children !== false ? (
+        children
+    ) : (
+        <div
+            aria-busy="true"
+            aria-label="Loading"
+            data-pttrn="skeleton"
+            data-variant={variant}
+            role="status"
+            style={cssWithVars({
+                '--height': typeof height === 'number' ? `${height}px` : height,
+                '--width': typeof width === 'number' ? `${width}px` : width,
+            })}
+        />
+    );
+}

@@ -1,0 +1,40 @@
+{
+    "name": "@ptrn/styles",
+    "version": "0.0.1",
+    "license": "CC-BY-4.0",
+    "files": [
+        "*.css",
+        "brands.*",
+        "data",
+        "tokens-export.json",
+        "README.md"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "type": "module",
+    "scripts": {
+        "lint": "stylelint \"*.css\" && prettier --write .",
+        "build": "npx tsx .scripts/build.ts && tsc",
+        "dev": "npx tsx watch .scripts/build.ts",
+        "pack": "rm -rf ./package && npm run build && npm pack",
+        "clean": "rm -rf data style ./*.js ./*.d.ts ./*.js.map ./*.css",
+        "pack:dev": "npm run pack && tar -xvf ./ptrn-styles-*.tgz"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pttrn/pttrn",
+        "directory": "packages/styles"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "devDependencies": {
+        "@figma/plugin-typings": "*",
+        "@types/node": "^22.7.9",
+        "prettier": "^3.5.3",
+        "prettier-plugin-jsdoc": "^1.3.2",
+        "stylelint": "^16.9.0",
+        "stylelint-config-standard": "^36.0.1"
+    }
+}

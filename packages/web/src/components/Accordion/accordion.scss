@@ -1,0 +1,10 @@
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--spacing-sizing-02);
+}
+
+:host(:empty) {
+    display: none;
+}

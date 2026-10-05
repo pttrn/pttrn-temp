@@ -1,0 +1,99 @@
+pttrn
+ptrn
+Backquote
+xxlg
+xxxlg
+xxxxlg
+tanzanite
+voilet
+Lato
+inversed
+MERIDIEMS
+falsey
+
+
+# PROPER NAMES
+Yoshi
+Wario
+Waluigi
+Inigo
+Fezzik
+Sisko
+Moines
+CARICOM
+Olimpic
+
+# BRANDS
+
+Better Homes & Garden
+better-homes-gardens
+Cartus
+cartus
+Century 21
+century-21
+Coldwell Banker
+coldwell-banker
+Corcoran
+corcoran
+Denali Boss
+denali-boss
+ERA
+era
+Sotheby's
+sothebys
+
+
+# ARIA
+aria-autocomplete
+aria-checked
+aria-current
+aria-disabled
+aria-errormessage
+aria-expanded
+aria-haspopup
+aria-hidden
+aria-invalid
+aria-label
+aria-level
+aria-modal
+aria-multiline
+aria-multiselectable
+aria-orientation
+aria-placeholder
+aria-pressed
+aria-readonly
+aria-required
+aria-selected
+aria-sort
+aria-valuemax
+aria-valuemin
+aria-valuenow
+aria-valuetext
+aria-atomic
+aria-busy
+aria-live
+aria-relevant
+aria-dropeffect (Deprecated)
+aria-grabbed (Deprecated)
+aria-activedescendant
+aria-colcount
+aria-colindex
+aria-colindextext
+aria-colspan
+aria-controls
+aria-describedby
+aria-description
+aria-details
+aria-flowto
+aria-labelledby
+aria-owns
+aria-posinset
+aria-rowcount
+aria-rowindex
+aria-rowindextext
+aria-rowspan
+aria-setsize
+aria-braillelabel
+aria-brailleroledescription
+aria-keyshortcuts
+aria-roledescription 

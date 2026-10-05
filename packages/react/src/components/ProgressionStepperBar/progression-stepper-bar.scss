@@ -1,0 +1,37 @@
+[data-pttrn='progression-stepper-bar'] {
+    &[data-size='large'] {
+        --height: var(--spacing-sizing-02);
+    }
+
+    &[data-size='small'] {
+        --height: var(--spacing-sizing-01);
+    }
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--spacing-sizing-01);
+
+    [data-steps] {
+        display: flex;
+        flex-direction: row;
+        gap: var(--spacing-sizing-01);
+        height: var(--height);
+
+        [data-step] {
+            width: 100%;
+            height: var(--height);
+            min-width: var(--spacing-sizing-02);
+            border-radius: var(--radius-sm);
+            background: var(--surface-neutral-t3-low);
+
+            &[data-complete] {
+                background: var(--surface-brand-primary);
+            }
+        }
+    }
+
+    [data-label] {
+        font: var(--labels-small);
+    }
+}

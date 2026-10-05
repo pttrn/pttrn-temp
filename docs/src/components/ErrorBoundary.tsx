@@ -1,0 +1,34 @@
+import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
+
+export type ErrorBoundaryProps = PropsWithChildren<{ fallback?: ReactNode }>;
+
+export class ErrorBoundary extends Component<ErrorBoundaryProps, { error?: Error; errorInfo?: ErrorInfo }> {
+    constructor(props: ErrorBoundaryProps) {
+        super(props);
+        this.state = {};
+    }
+
+    static getDerivedStateFromError(error: Error) {
+        return { error };
+    }
+
+    componentDidCatch?(error: Error, errorInfo: ErrorInfo) {
+        this.setState({ error, errorInfo });
+    }
+
+    render() {
+        if (this.state.error) {
+            return (
+                this.props.fallback || (
+                    <>
+                        <h2>Something went wrong.</h2>
+                        <p>{this.state.error.toString()}</p>
+                        <p>{this.state.errorInfo?.componentStack}</p>
+                    </>
+                )
+            );
+        }
+
+        return this.props.children;
+    }
+}

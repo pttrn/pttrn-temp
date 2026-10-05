@@ -1,0 +1,17 @@
+import { BadgeProps } from '.';
+import { Avatar } from '-/components/Avatar';
+import { ComponentExample } from '-/utils/demo';
+
+export const BadgeExample: ComponentExample<BadgeProps> = {
+    render: ({ props, Component }) => {
+        return (
+            <Component {...props}>
+                <Avatar image="/avatar-01.png" name="Andre Giant" />
+            </Component>
+        );
+    },
+    variants: {
+        surfaceBorder: { color: { options: ['primary', 'secondary'] } },
+        size: { count: { options: [9, 99, 999] } },
+    },
+};

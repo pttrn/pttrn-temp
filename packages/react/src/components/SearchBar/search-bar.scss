@@ -1,0 +1,14 @@
+[data-pttrn='search-bar'] {
+    display: flex;
+    width: 100%;
+    min-width: 100px;
+}
+
+[data-pttrn='no-items-found'] {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-sizing-08) var(--spacing-sizing-04);
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sizing-03);
+}

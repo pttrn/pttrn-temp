@@ -1,0 +1,21 @@
+[data-pttrn='date-picker'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    [data-pttrn='input'] {
+        padding-right: 0;
+    }
+
+    [data-pttrn='calendar-popup'] {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--drop-shadow-float);
+        z-index: var(--z-index-dropdown);
+        width: fit-content;
+    }
+
+    [data-pttrn='inline-alert'] {
+        margin-top: var(--spacing-sizing-01);
+    }
+}
